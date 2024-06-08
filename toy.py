@@ -12,6 +12,12 @@ from torch.distributions.mixture_same_family import MixtureSameFamily
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 import tqdm
+import shutil
+
+# clear the output folder
+shutil.rmtree('output', ignore_errors=True)
+import os
+os.makedirs('output', exist_ok=True)
 
 D = 10.
 M = D+5
@@ -178,6 +184,7 @@ plt.savefig('output/toy_loss.png')
 # 1-Rectified Flow
 draw_plot(rectified_flow_1, z0=initial_model.sample([2000]), z1=samples_1.detach().clone(), N=100)
 draw_plot(rectified_flow_1, z0=initial_model.sample([2000]), z1=samples_1.detach().clone(), N=1)
+
 
 # Reflow for 2-Rectified Flow
 z10 = samples_0.detach().clone()
